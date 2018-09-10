@@ -1,0 +1,163 @@
+global-styling:
+  version: VERSION
+  js:
+    js/global.js: {}
+  css:
+    component:
+      css/style.css: {}
+      css/navigation_menu.css: {}
+      css/scroll_bar.css: {}
+
+mapbox:
+  css:
+    theme:
+      https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css: {type: external, weight:2000}
+  header: true
+  js:
+    https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js: { type: external, minified: true, preprocess: false}
+      
+echarts:
+  css:
+    theme:
+      /custom_css/mapbox/mapbox_chart.css: {}
+  js:
+    /libraries/echarts/echarts_v2.min.js: {minified: true, preprocess: false}
+    /custom_js/mapbox/mapbox_chart.js: {minified: false, preprocess: false}
+
+custom-mapbox:
+  css:
+    theme:
+      /custom_css/mapbox/mapbox.css: {}
+  js:
+    /custom_js/mapbox/globalMapFuncts.js: {minified: false, preprocess: false}
+    /custom_js/mapbox/mapbox2.js: {minified: false, preprocess: false}
+    /custom_js/mapbox/country_pa_focus.js: {minified: false, preprocess: false}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.ui.effects.core
+    - core/jquery.ui.effects.slide
+    - core/drupalSettings
+    - bootstrap_barrio_biopama/echarts
+    - bootstrap_barrio_biopama/jquery-address
+    - bootstrap_barrio_biopama/ajax-loader
+    - bootstrap_barrio_biopama/biopama-breadcrumbs
+    
+rris-map:   
+  css:
+    theme:
+      /custom_css/mapbox/scope_menu.css: {}
+      /custom_css/mapbox/mapbox_header.css: {}
+      /custom_css/mapbox/map_page_layout.css: {}
+  js:
+    /custom_js/mapbox/map_menu.js: {minified: false, preprocess: false}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.ui.effects.core
+    - core/jquery.ui.effects.slide
+    - core/drupal.ajax
+    - core/drupalSettings
+    - core/jquery.once
+    - bootstrap_barrio_biopama/toggle-slider
+    - bootstrap_barrio_biopama/jquery-address
+    - bootstrap_barrio_biopama/ajax-loader
+    - bootstrap_barrio_biopama/custom-mapbox
+    - bootstrap_barrio_biopama/biopama-map-tooltips
+    - bootstrap_barrio_biopama/anon-link-redirect
+    
+indicator-card:
+  css:
+    theme:
+      /custom_css/mapbox/indicator_card.css: {}
+  js:
+    /custom_js/indicator_card/indicator_chart.js: {minified: false, preprocess: false}
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.effects.core
+    
+biopama-map-tooltips:
+  css:
+    theme:
+      css/tooltips.css: {}
+  js:
+    /custom_js/tooltips_map.js: {minified: false, preprocess: false}
+    
+policy-style:
+  css:
+    theme:
+      css/policy_style.css: {}
+    
+biopama-nav-breadcrumbs:
+  css:
+    theme:
+      /custom_css/nav-breadcrumbs.css: {}
+  js:
+    /custom_js/nav-breadcrumbs.js: {minified: false, preprocess: false}
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.effects.core
+    - core/jquery.ui.effects.slide
+    - core/drupal.dialog.ajax
+    
+biopama-breadcrumbs:
+  js:
+    /custom_js/mapbox/breadcrumbs.js: {minified: false, preprocess: false}
+  dependencies:
+    - core/jquery.ui.effects.highlight
+    
+anon-link-redirect:
+  js:
+    /custom_js/anon_link_redirect.js: {minified: false, preprocess: false}
+    
+nice-scroll:   
+  js:
+    /libraries/nicescroll/jquery.nicescroll.min.js: {minified: false, preprocess: false}
+  dependencies:
+    - core/jquery
+
+toggle-slider:   
+  css:
+    theme:
+      /libraries/toggleslider/toggle_slider.css: {}
+      
+ajax-loader:   
+  css:
+    theme:
+      /libraries/ajaxloader/ajaxLoader.css: {}
+  js:
+    /libraries/ajaxloader/ajaxLoader.js: {minified: false, preprocess: false}
+    
+jquery-address:
+  js:
+    /libraries/jquery-address-master/src/jquery.address.min.js: {minified: true, preprocess: false}
+  dependencies:
+    - core/jquery
+    
+node-geohash:
+  js:
+    /libraries/nodegeohash/node-geohash.js:  {minified: true, preprocess: false}
+    
+views-entity-override:
+  css:
+    theme:
+      css/views_entity_override.css: {}
+  js:
+    js/views_entity_override.js: {}
+  
+biopama-dialog:
+  css:
+    theme:
+      /custom_css/dialog.css: {}
+      
+indicator-country-chart:
+  css:
+    theme:
+      /custom_css/country_page/indicator_country_card.css: {}
+  js:
+    /custom_js/country_page/country_chart.js: {minified: false, preprocess: false}
+  dependencies:
+    - bootstrap_barrio_biopama/custom-mapbox
+    
+
+  

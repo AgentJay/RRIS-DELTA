@@ -1,0 +1,49 @@
+img.biopama-logo {
+    float: left;
+    padding: 5px 20px;
+	height: 40px;
+}
+
+.navbar-we-mega-menu {
+    background-color: #fff;
+	box-shadow: 0px 2px 59.8px 5.2px rgba(17, 133, 171, 0.15);
+	padding: 0rem;
+}
+
+#CollapsingNavbar > div {
+    width:  100%;
+}
+
+.navbar>.container, .navbar>.container-fluid {
+    justify-content: flex-start;
+}
+.we-mega-menu-submenu li.we-mega-menu-li {
+    border-bottom: 0 none;
+    width: 100%;
+}
+.we-mega-menu-ul>.we-mega-menu-li>a {
+    background-color: #fff;
+	color: #679b95;
+}
+.we-mega-menu-ul>.we-mega-menu-li.active>a{
+    background-color: #eee;
+	color: #679b95;	
+}
+a#menu-toggle {
+    background: white;
+    float: left;
+}
+.navbar-toggle .icon-bar {
+    background: #ccc;
+}
+
+nav.block.block-menu.navigation.menu--account {
+    position: absolute;
+    right: 0;
+    padding-right: 20px;
+    margin-top: -5px;
+}
+
+.menu--account a.nav-link {
+    color: #679b95;
+}

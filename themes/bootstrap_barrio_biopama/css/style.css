@@ -1,0 +1,195 @@
+/**
+ * @file
+ * Subtheme specific CSS.
+ */
+
+ 
+  /**
+ * icon colors
+ */
+ div.alert.alert-dismissible{
+	 opacity: 1 !important;
+ }
+ .navbar-we-mega-menu {
+    padding: 5px !important;
+	margin: 0px !important;
+}
+ul#superfish-account {
+    position: absolute;
+    top: 4px;
+    background: white;
+    right: 0;
+}
+ul.sf-menu.menu, ul.sf-menu.menu ul, ul.sf-menu.menu li {
+    background: #fff;
+}
+ #drupal-off-canvas a {
+    color: #90c14f;
+}
+
+ g#biopama-blue polygon {
+    stroke: #679b95;
+	fill: #fff; /*the backgound color*/
+}
+ g#biopama-blue path {
+    fill: #679b95;
+}
+ 
+g#biopama-green polygon {
+    stroke: #8fbf4b;
+	fill: #fff; /*the backgound color*/
+}
+g#biopama-green path {
+    fill: #8fbf4b;
+}
+g#biopama-green path.cls-2 {
+    clip-path: none;
+}
+
+ /**
+ * off canvas overrides
+ */
+ #drupal-off-canvas *, #drupal-off-canvas *:not(div) {
+    background: transparent;
+    font-family: "Lucida Grande", 'Lucida Sans Unicode', 'liberation sans', sans-serif;
+    color: #679b95;
+}
+
+ #drupal-off-canvas .form-text, #drupal-off-canvas .form-tel, #drupal-off-canvas .form-email, #drupal-off-canvas .form-url, #drupal-off-canvas .form-search, #drupal-off-canvas .form-number, #drupal-off-canvas .form-color, #drupal-off-canvas .form-file, #drupal-off-canvas .form-textarea, #drupal-off-canvas .form-date, #drupal-off-canvas .form-time {
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.125);
+    border-color: #669a94;
+	border-radius: 10px;
+    color: #669a94;
+}
+
+#drupal-off-canvas .form-text:focus, #drupal-off-canvas .form-tel:focus, #drupal-off-canvas .form-email:focus, #drupal-off-canvas .form-url:focus, #drupal-off-canvas .form-search:focus, #drupal-off-canvas .form-number:focus, #drupal-off-canvas .form-color:focus, #drupal-off-canvas .form-file:focus, #drupal-off-canvas .form-textarea:focus, #drupal-off-canvas .form-date:focus, #drupal-off-canvas .form-time:focus {
+    border-color: #90c14f;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.125), 0 0 8px #90c14f;
+}
+
+#drupal-off-canvas input:invalid, #drupal-off-canvas button:invalid, #drupal-off-canvas select:invalid, #drupal-off-canvas textarea:invalid, #drupal-off-canvas input:focus, #drupal-off-canvas button:focus, #drupal-off-canvas select:focus, #drupal-off-canvas textarea:focus, #drupal-off-canvas input[type="file"]:focus, #drupal-off-canvas input[type="file"]:active, #drupal-off-canvas input[type="radio"]:focus, #drupal-off-canvas input[type="radio"]:active, #drupal-off-canvas input[type="checkbox"]:focus, #drupal-off-canvas input[type="checkbox"]:active {
+	border-color: #90c14f;
+	color: #90c14f;
+}
+
+#drupal-off-canvas .form-select, #drupal-off-canvas .form-text, #drupal-off-canvas .form-tel, #drupal-off-canvas .form-email, #drupal-off-canvas .form-url, #drupal-off-canvas .form-search, #drupal-off-canvas .form-number, #drupal-off-canvas .form-color, #drupal-off-canvas .form-file, #drupal-off-canvas .form-textarea, #drupal-off-canvas .form-date, #drupal-off-canvas .form-time {
+    padding: 10px 20px !important;
+    margin: 5px 0 0 0 !important;
+    border-radius: 10px !important;
+    color: #669a94;
+	background-color: #fff !important;
+}
+.horizontal-tabs {
+	border: 0px !important;
+    border-bottom: 1px solid #ccc !important;
+}
+#drupal-off-canvas button, #drupal-off-canvas .button {
+    margin: 0 !important; 
+}
+
+div.filter-wrapper {
+    display: none;
+}
+
+.ui-dialog.ui-dialog-off-canvas {
+    background: #fff;
+}
+
+div.field--name-moderation-state {
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+}
+#drupal-off-canvas details, #drupal-off-canvas summary, #drupal-off-canvas .details-wrapper {
+    margin: 0px !important;
+    padding: 0 10px !important;
+}
+li.horizontal-tab-button > a > strong {
+    color: #fff !important;
+    background: transparent !important;
+	padding: 10px !important;
+}
+li.horizontal-tab-button {
+    margin: 2px 5px !important;
+    padding: 7px 2px !important;
+    background: #90c14f !important;
+}
+li.horizontal-tab-button.selected {
+	box-shadow: 0px 2px 20px 5.2px rgba(17, 133, 171, 0.3);
+}
+div.horizontal-tabs-panes > details > summary {
+    display: none !important;
+}
+#drupal-off-canvas input[type="submit"].button {
+    height: 30px !important;
+    margin-bottom: 0px !important; 
+    border-radius: 10px !important;
+}
+#drupal-off-canvas input.button.remove-button {
+    height: 20px !important;
+    width: 40% !important;
+    position: absolute;
+    margin-top: 16px !important;
+    font-size: 10px;
+}
+
+.ui-dialog.ui-dialog-off-canvas .ui-dialog-title:before {
+  display: none !important;
+  width: 0px !important;
+}
+
+.ui-dialog.ui-dialog-off-canvas .ui-dialog-title {
+    padding-left: 5px;
+    max-width: unset;
+    white-space: unset;
+}
+.ui-dialog.ui-dialog-off-canvas .ui-dialog-titlebar {
+	padding: 1.5em;
+    background: #eee;
+    border-bottom: 0px solid #eee;
+    font-weight: bold;
+    color: #90c14f;
+}
+
+.ui-dialog.ui-dialog-off-canvas {
+    box-shadow: 0px 2px 59.8px 5.2px rgba(17, 133, 171, 0.15) !important;
+	border: 0px solid #c5c5c5 !important;
+}
+
+#drupal-off-canvas details[open] > summary {
+    background-color: #90c14f !important;
+    color: #fff !important;
+}
+.entities-list .item-container {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    width: 100%;
+	height: 30px;
+}
+div.field--type-entity-reference {
+    padding: 0px;
+}
+input.remove-button {
+    background: #ff8e8e !important;
+}
+
+.close {
+    font-size: 21px !important; 
+}
+
+.country-summary-dialog {
+    height: 80% !important;
+    top: 10% !important;
+}
+
+.country-summary-dialog .ui-dialog-content {
+	min-height: 95% !important;
+}
+
+div.entities-list {
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0px;
+}
