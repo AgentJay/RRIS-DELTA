@@ -60,7 +60,7 @@ function checkChartData(){
 		if (typeof xAxis['data'] !== 'undefined'){
 			var xAxisData = [], testDate, fullDate;
 			indicatorResults.forEach(function(object){
-				//get the date - it could be a simple year, e.g. 2012 or more complex, e.g. 2016/04/16
+				//get the date - it could be a simple year, e.g. 2012 or more complex, e.g. 2016/04/16 - cant get date types to work in echarts
 				// testDate = object[xAxis['data']];
 				// if (testDate.length === 4){ //assumption is that if the test date is 4 characters long then it is a year
 				//   fullDate = new Date(testDate, 11, 31); //month index and date
