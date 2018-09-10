@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Loading the Mapbox CSS from CDN-->
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+	<!--Loading the Leaflet JS from CDN-->
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+	<style>
+		body { margin:0; padding:0; }
+		#mapid { position:absolute; top:0; bottom:0; width:100%; }
+		.country-group-title {
+			padding-bottom: 10px;
+			font-size: 16px;
+		}
+		.country-group-wrapper {
+			padding: 10px;
+			max-width: 400px;
+		}
+		a.group-link {
+			text-decoration: none;
+			color: darkgray;
+		}
+		.country-group-text {
+			color: dimgrey;
+		}
+		div.country-group-text > br {
+			line-height: 2em;
+		}
+.clickvisible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s linear;
+}
+.clickhidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s linear;
+}
+div#map-click {
+    margin: 10px;
+    padding: 20px 30px;
+    background: #90c14f;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    --font-family-monospace: "SFMono-Regular",Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+	</style>
+</head>
+<body>
+<div id='mapid'></div>
+
+<script>
+	var mapInteractive = false;
+	mapboxgl.accessToken = 'pk.eyJ1IjoiamFtZXNkYXZ5IiwiYSI6ImNpenRuMmZ6OTAxMngzM25wNG81b2MwMTUifQ.A2YdXu17spFF-gl6yvHXaw';
+	var map = new mapboxgl.Map({
+		container: 'mapid',
+		style: 'mapbox://styles/jamesdavy/cjd1ij3w60o802rlckdiaj0wn',
+		center: [48.57, -6.66],
+    zoom: 1.1,
+		interactive: false
+	});
+	class mapClickControl {
+		onAdd(map) {
+			this._map = map;
+			this._container = document.createElement('div');
+			this._container.className = 'clickvisible';
+			this._container.innerHTML = "<div id='map-click'>Click the map to enable interaction</div>";
+			return this._container;
+		}
+
+		onRemove() {
+			this._container.parentNode.removeChild(this._container);
+			this._map = undefined;
+		}
+	}
+	map.on('click', function() {
+		if (mapInteractive === false){
+			mapInteractive = true;
+			map['scrollZoom'].enable();
+			map['boxZoom'].enable();
+			map['dragRotate'].enable();
+			map['dragPan'].enable();
+			map['doubleClickZoom'].enable();
+			map['touchZoomRotate'].enable();
+			var d = document.getElementById("map-click");
+		  d.className += " clickhidden";
+		}
+	});
+	map.on('load', function() {
+		map.addControl(new mapboxgl.NavigationControl());
+		var mapClick = new mapClickControl();
+		map.addControl(mapClick, 'top-left');
+		map['touchZoomRotate'].enable();
+		map.addLayer({
+			"id": "ParentCountryGroup-hover",
+			"type": "fill",
+			"source": "composite",
+			"source-layer": "Parent_Groups-02486i",
+			"layout": {},
+			"paint": {
+				"fill-color": "#627BC1",
+				"fill-opacity": 0.3
+			},
+			"filter": ["==", "Group", ""]
+		});
+		map.addLayer({
+			"id": "ChildCountryGroup-hover",
+			"type": "fill",
+			"source": "composite",
+			"source-layer": "Child_groups-0m8ghn",
+			"layout": {},
+			"paint": {
+				"fill-color": "#627BC1",
+				"fill-opacity": 0.3
+			},
+			"filter": ["==", "Group", ""]
+		});
+		// set mouse hover effect
+		map.on("mousemove", "parent-groups-02486i", function(e) {
+			map.setFilter("ParentCountryGroup-hover", ["==", "Group", e.features[0].properties.Group]);
+			map.getCanvas().style.cursor = 'pointer';
+		});
+		map.on("mousemove", "child-groups-0m8ghn", function(e) {
+			map.setFilter("ChildCountryGroup-hover", ["==", "Group", e.features[0].properties.Group]);
+			map.getCanvas().style.cursor = 'pointer';
+		});
+
+		// Reset the layer's filter when the mouse leaves the layer.
+		map.on("mouseleave", "parent-groups-02486i", function() {
+			map.setFilter("ParentCountryGroup-hover", ["==", "Group", ""]);
+			map.getCanvas().style.cursor = '';
+		});
+		map.on("mouseleave", "child-groups-0m8ghn", function() {
+			map.setFilter("ChildCountryGroup-hover", ["==", "Group", ""]);
+			map.getCanvas().style.cursor = '';
+		});
+		var uemoaText = "A sub-regional version of the Reference Information System focuses on the West African Economic and Monetary Union (WAEMU, UEMOA in French).";
+		var ofacText = "The Observatory for Central African Forests (OFAC) has added a protected areas component, with BIOPAMA’s contribution.";
+		var sadcText = "The Transfrontier Conservation Areas (TFCA) Portal is developed for the Southern African Development Community (SADC) TFCAs and it integrated a sub-regional version of the Reference Information System.";
+		var rampaoText = "A sub-regional version of the Reference Information System focuses on marine protected areas in Western Africa. It is the result of collaboration with RAMPAO (the West African Marine Protected Areas Network).";
+		var igadText = "The Intergovernmental Authority on Development (IGAD) includes governments from the Horn of Africa, Nile Valley and the African Great Lakes.";
+		var eacText = "With the establishment of the East African Community Observatory in 2015, a dedicated version of the Reference Information System was developed. Its content is drawn from global datasets, some primarily regional datasets focusing on the overlap between extractive industries and protected areas and local datasets relevant to the needs of the region.";
+		var pacificText = "The Oceania region covers over 100 million square kilometres of the Pacific Ocean. Mostly vast ocean expanses,"+
+											" the small Pacific island countries and territories comprise only 2% of the regional area. The Pacific has three recognized "+
+											"global biodiversity hotspots: East Melanesia, New Caledonia and Polynesia-Micronesia, as well as numerous spots of high regional significance.<br>"+
+											"Protected areas in the Pacific exist under a variety of IUCN categories, tenure and governance models, and other effective conservation measures.";
+		var caribbeanText = "The Caribbean region is characterized by an enormous ecological, cultural, political and economic diversity. "+
+											"Insular and coastal ecosystems are predominant. High biodiversity and a great variety of landforms and habitats are "+
+											"also marked by high population densities, especially in the Insular Caribbean.<br>"+
+											"Caribbean economies are strongly dependent on natural resources and while tourism, in addition to mining and oil exploration, "+
+											"represents a major income source, there are significant impacts of these activities on the environment.";
+		var cwAfricaText = "The region hosts many highly endangered mammals, including Forest Elephants and Mountain Gorillas. Habitat "+
+											"types range from lush rain forest in the Congo Basin, the world’s second largest tropical forest, to the vast "+
+											"desert landscapes of the Southern Sahara. Despite huge cultural and environmental diversity in West and Central "+
+											"African countries, there are many shared similarities throughout the region. Sustainable financing, capacity building "+
+											"for managers, and solid strategies for involving local communities in natural resource management are challenges that "+
+											"concern many West and Central African protected areas. Reserves in many West African countries tend to be small due to high "+
+											"population densities, with human-wildlife conflict a common problem around reserve borders. ";
+		var esAfricaText = "Eastern and southern Africa is extremely rich in biodiversity, hosting seven global biodiversity hotspots and several centres "+
+											"of endemic species. It has the largest remaining populations of iconic wildlife left on the continent including the last remaining "+
+											"large scale migrations of wild herbivores . The region is home to a number of large and world renowned protected areas, such as the "+
+											"Serengeti, but also has a growing and diverse array of community conserved and privately protected areas as well as several "+
+											"transfrontier conservation areas straddling the borders of two of more countries. These protected areas face a number of management "+
+											"and governance challenges and threats including illegal wildlife trade, poaching, invasive species, climate change and lack of sustainable "+
+											"funding to meet conservation objectives. Many protected areas are becoming disconnected islands in a rapidly developing landscape.";
+
+		//This is a list of all the Child sites we have that are active.
+		//These values are passed to the function that creates the pop-up
+		var uemoa = contructPopupText("Union Economique et Monétaire Ouest Africaine", "http://uemoa-rris.biopama.org/", uemoaText)
+		var ofac = contructPopupText("Observatoire des forêts d’Afrique Centrale", "http://ofac-rris.biopama.org/", ofacText)
+		var sadc = contructPopupText("Southern African Development Community", "http://sadc-rris.biopama.org/", sadcText)
+		var rampao = contructPopupText("Réseau régional d’Aires Marines Protégées en Afrique de l’Ouest", "http://rampao-rris.biopama.org/", rampaoText)
+		var igad = contructPopupText("Intergovernmental Authority on Development", "http://igad-rris.biopama.org/", igadText)
+		var eac = contructPopupText("East African Community", "http://eac-rris.biopama.org/", eacText)
+		var caribbean = contructPopupText("ACP Caribbean", "http://caribbean-rris.biopama.org/", caribbeanText)
+		var pacific = contructPopupText("ACP Pacific", "http://pacific-rris.biopama.org/", pacificText)
+		var cwAfrica = contructPopupText("West and Central Africa", "http://ofac-rris.biopama.org/", cwAfricaText)
+		var esAfrica = contructPopupText("Eastern and Southern Africa", "http://eac-rris.biopama.org/", esAfricaText)
+
+
+		//set pop-up for the parent groups
+		map.on("click", "parent-groups-02486i", function(e) {
+			var htmlContent;
+			switch(e.features[0].properties.Group) {
+				case "ES_Africa":
+					htmlContent = esAfrica;
+					break;
+				case "CW_Africa":
+					htmlContent = cwAfrica;
+					break;
+				case "Caribbean":
+					htmlContent = caribbean;
+					break;
+				case "Pacific":
+					htmlContent = pacific;
+					break;
+				default:
+			}
+			new mapboxgl.Popup().setLngLat(e.lngLat)
+            .setHTML(htmlContent)
+            .addTo(map);
+		});
+		//set pop-up for the children
+		map.on("click", "child-groups-0m8ghn", function(e) {
+			var htmlContent = '';
+			for(key in e.features){
+				switch(e.features[key].properties.Group) {
+					case "UEMOA":
+						htmlContent += uemoa;
+						break;
+					case "RAMPAO":
+						htmlContent += rampao;
+						break;
+					case "SADC":
+						htmlContent += sadc;
+						break;
+					case "OFAC":
+						htmlContent += ofac;
+						break;
+					case "IGAD":
+						htmlContent += igad;
+						break;
+					case "EAC":
+						htmlContent += eac;
+						break;
+					case "Caribbean":
+						htmlContent += caribbean;
+						break;
+					case "Pacific":
+						htmlContent += pacific;
+						break;
+					default:
+				}
+			}
+			new mapboxgl.Popup().setLngLat(e.lngLat)
+            .setHTML(htmlContent)
+            .addTo(map);
+		});
+	});
+
+	//This function creates the pop-up. Feel free to customise this by adding classes or extending this with addtional content. The content will need to added to the child site variables above.
+	function contructPopupText(name, url, groupText){
+		var results = "<div class='country-group-wrapper'>"+
+									"<div class='country-group-title'>"+name+"</div>"+
+									"<div class='country-group-text'>"+groupText+"</div>"+
+									//"<span class='country-group-highlights'><b>Our highlights: </b><a class='group-highlights' href="+url+">"+name+"</a></span><br>"+
+									//"<span class='country-group-link'><b>Our tools: </b><a class='group-link' target='_blank' href="+url+">"+url+"</a></span>"+
+		"</div></ br>";
+		return results;
+	}
+</script>
+
+</body>
+</html>

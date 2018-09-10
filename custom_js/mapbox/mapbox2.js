@@ -14,7 +14,7 @@ var idOpen = 0;
 	  $('#drupal-off-canvas').find('form.node-indicator-form .alert-success, form.node-indicator-edit-form .alert-success').once('updated-view').each( function() {
 			$( ".menu-indicators:visible" ).trigger('RefreshView');
 	  });	
-	  menuDivFix(); //comment
+	  menuDivFix(); //comment2
 	}
   };
 })(jQuery, Drupal);
