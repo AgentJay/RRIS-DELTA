@@ -35,7 +35,7 @@ function idEditor(){
 		el.parentNode.insertBefore(ifrm, el);
 		var height = jQuery('.mapboxgl-canvas').outerHeight(true);
 		var width = jQuery('.mapboxgl-canvas').outerWidth(true);
-		jQuery('iframe#iframe-container').css('height', height-50);
+		jQuery('iframe#iframe-container').css('height', height);
 		jQuery('iframe#iframe-container').css('width', width);
 		jQuery('iframe#iframe-container').animate({left: 0},1000).queue(function() {
 			jQuery('button#close-id-editor').toggle(true);

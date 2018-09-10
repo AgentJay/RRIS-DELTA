@@ -14,7 +14,7 @@ var idOpen = 0;
 	  $('#drupal-off-canvas').find('form.node-indicator-form .alert-success, form.node-indicator-edit-form .alert-success').once('updated-view').each( function() {
 			$( ".menu-indicators:visible" ).trigger('RefreshView');
 	  });	
-	  menuDivFix(); //comment2
+	  menuDivFix();
 	}
   };
 })(jQuery, Drupal);
@@ -25,7 +25,7 @@ function menuDivFix(){
 	var filteredPolicies = jQuery(".active-scope:visible").next().find(".view-id-menu_level_1_policies_").detach();
 	//empty the parent (to remove the empty div)
 	jQuery("#block-mapmenuscope .active-scope").next().find("div.views-element-container.col-auto:visible").empty();
-	//reattach the result.
+	//reattach the result
 	filteredPolicies.appendTo(jQuery("#block-mapmenuscope .active-scope").next().find("div.views-element-container.col-auto:visible"));
 }
 
@@ -42,8 +42,10 @@ function idEditor(){
 		var el = document.getElementById('map-container');
 		el.parentNode.insertBefore(ifrm, el);
 		var height = jQuery('.mapboxgl-canvas').outerHeight(true);
+		var toolBarHeight = jQuery('#toolbar-bar').outerHeight(true);
+		var adminTrayHeight = jQuery('#toolbar-item-administration-tray').outerHeight(true);
 		var width = jQuery('.mapboxgl-canvas').outerWidth(true);
-		jQuery('iframe#iframe-container').css('height', height-50);
+		jQuery('iframe#iframe-container').css('height', height - toolBarHeight - adminTrayHeight);
 		jQuery('iframe#iframe-container').css('width', width);
 		jQuery('iframe#iframe-container').animate({left: 0},1000).queue(function() {
 			jQuery('button#close-id-editor').toggle(true);

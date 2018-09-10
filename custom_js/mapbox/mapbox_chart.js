@@ -43,12 +43,19 @@ function minimizeChart(){
   jQuery( ".activeSelection").first().next().trigger( "click" );
   //updateBreadIndicator("NA");
 }
+function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
 function checkChartData(){
 		//we take the REST results and put it into a new variable, this ensures the original results are stored unmodified.
 		var indicatorResults = selSettings.selIndicatorRes;
 
 		var xAxis = jQuery.extend( true, {}, selSettings.selIndicatorXaxis );
-
+		//sort the xaxis data by year
+		sortByKey(indicatorResults,xAxis['data']);
 		//here we replace the x axis data placeholder with the array of values from the rest service. We only do this if they have assigned a vlaue to that axis.
 		if (typeof xAxis['data'] !== 'undefined'){
 			var xAxisData = [], testDate, fullDate;

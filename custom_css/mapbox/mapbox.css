@@ -251,7 +251,7 @@ iframe#iframe-container {
   position: fixed;
   left: 5000px;
   background: white;
-  top: 0;
+  bottom: 0;
   z-index: 505;
 }
 
