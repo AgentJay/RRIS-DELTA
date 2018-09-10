@@ -25,7 +25,7 @@ function menuDivFix(){
 	var filteredPolicies = jQuery(".active-scope:visible").next().find(".view-id-menu_level_1_policies_").detach();
 	//empty the parent (to remove the empty div)
 	jQuery("#block-mapmenuscope .active-scope").next().find("div.views-element-container.col-auto:visible").empty();
-	//reattach the result
+	//reattach the result.
 	filteredPolicies.appendTo(jQuery("#block-mapmenuscope .active-scope").next().find("div.views-element-container.col-auto:visible"));
 }
 
